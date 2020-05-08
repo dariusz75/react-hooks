@@ -16,7 +16,14 @@ export const PetContainer = (props: any): any => {
       <p>Pets:</p>
       <ul>
         {pets.map((pet) => (
-          <Pet key={pet.id} animal={pet.animal} name={pet.name} age={pet.age} />
+          <Pet
+            setPets={setPets}
+            id={pet.id}
+            key={pet.id}
+            animal={pet.animal}
+            name={pet.name}
+            age={pet.age}
+          />
         ))}
       </ul>
       <AddPetForm setPets={setPets} />
