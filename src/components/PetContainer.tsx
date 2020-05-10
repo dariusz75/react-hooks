@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Pet from "./Pet";
 
 export const PetContainer = (props: any): any => {
-  const petsData = [
-    { id: "1", animal: "Cat", name: "Gin", age: 5 },
-    { id: "2", animal: "Dog", name: "Rexio", age: 10 },
-    { id: "3", animal: "Rabbit", name: "Caviar", age: 15 },
-  ];
+  const petsData: Array<any> = [];
 
   const [pets, setPets] = useState(petsData);
+
+  //Runs only once, when this component is rendered.
+  useEffect(() => {
+    if (localStorage.getItem("petDataInLocalStorage")) {
+      setPets(JSON.parse(localStorage.getItem("petDataInLocalStorage")!));
+    }
+  }, []);
+
+  // Runs every time when our pets state changes
+  useEffect(() => {
+    localStorage.setItem("petDataInLocalStorage", JSON.stringify(pets));
+  }, [pets]);
 
   return (
     <>

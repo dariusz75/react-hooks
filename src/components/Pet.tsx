@@ -2,7 +2,9 @@ import React from "react";
 
 const Pet = (props: any): any => {
   const handleDelete = () => {
-    props.setPets((prev: any) => prev.filter((pet: any) => pet.id != props.id));
+    props.setPets((prev: any) =>
+      prev.filter((pet: any) => pet.id !== props.id)
+    );
   };
   return (
     <li>
